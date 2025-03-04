@@ -16,12 +16,12 @@ body {
 /* Header */
 header {
     width: 100%;
-    background: #ff9800;
+    background: #233430;
     text-align: center;
     padding: 15px;
     font-size: 1.5rem;
     font-weight: bold;
-    box-shadow: 0px 4px 8px rgba(255, 152, 0, 0.5);
+    box-shadow: 0px 4px 8px rgba(17, 154, 79, 0.5);
 }
 
 /* Player Container */
@@ -32,7 +32,7 @@ header {
     margin-top: 20px;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 4px 10px rgba(8, 98, 149, 0.2);
 }
 
 video {
@@ -47,7 +47,7 @@ footer {
     padding: 15px;
     font-size: 1rem;
     font-weight: bold;
-    background: #ff9800;
+    background: #090f0f;
     width: 100%;
     box-shadow: 0px -4px 8px rgba(255, 152, 0, 0.5);
 }

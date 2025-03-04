@@ -3,17 +3,17 @@ document.addEventListener("DOMContentLoaded", function () {
         techOrder: ["html5"],
         controls: true,
         autoplay: true,
-        fluid: true,  // Responsive design
+        fluid: true,
         sources: [{
             src: "https://otte.live.cf.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/rkyxparx1t/out/v1/fe9782633a364a6a84c9410f26d9b2c4/cenc.mpd",
             type: "application/dash+xml"
-        }]
+        }],
+        eme: {} // Initialize EME plugin
     });
 
-    // Enable DRM
-    player.ready(function () {
-        this.eme();  // Activate DRM plugin
-        this.src({
+    player.ready(function() {
+        // Set DRM configuration directly with the source
+        player.src({
             src: "https://otte.live.cf.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/rkyxparx1t/out/v1/fe9782633a364a6a84c9410f26d9b2c4/cenc.mpd",
             type: "application/dash+xml",
             keySystems: {
