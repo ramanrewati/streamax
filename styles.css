@@ -1,75 +1,50 @@
-/* Google Font */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
-body {
+/* Reset default styling */
+* {
     margin: 0;
     padding: 0;
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #1e1e1e, #343a40);
-    color: white;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: #121212; /* Rich dark background */
+    color: #e0e0e0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     display: flex;
     flex-direction: column;
-    align-items: center;
     min-height: 100vh;
-}
-
-/* Header */
-header {
-    width: 100%;
-    background: #233430;
+    line-height: 1.6;
+  }
+  
+  header, footer {
+    background-color: #1f1f1f;
     text-align: center;
-    padding: 15px;
-    font-size: 1.5rem;
-    font-weight: bold;
-    box-shadow: 0px 4px 8px rgba(17, 154, 79, 0.5);
-}
-
-/* Player Container */
-.player-container {
-    position: relative;
-    width: 90%;
-    max-width: 800px;
-    margin-top: 20px;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0px 4px 10px rgba(8, 98, 149, 0.2);
-}
-
-video {
-    width: 100%;
-    border-radius: 12px;
-}
-
-/* Footer */
-footer {
-    margin-top: auto;
-    text-align: center;
-    padding: 15px;
-    font-size: 1rem;
-    font-weight: bold;
-    background: #090f0f;
-    width: 100%;
-    box-shadow: 0px -4px 8px rgba(255, 152, 0, 0.5);
-}
-
-footer span {
-    color: #ffffff;
-    font-weight: bold;
-}
-
-/* Responsive Design */
-@media (max-width: 600px) {
-    header {
-        font-size: 1.2rem;
-        padding: 12px;
+    padding: 20px;
+  }
+  
+  header h1 {
+    font-size: 1.8rem;
+    font-weight: 300;
+  }
+  
+  main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  video {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid #333;
+    border-radius: 5px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    header h1 {
+      font-size: 1.5rem;
     }
-
-    .player-container {
-        width: 95%;
-    }
-
-    footer {
-        font-size: 0.9rem;
-        padding: 12px;
-    }
-}
+  }
+  
