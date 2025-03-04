@@ -40,17 +40,6 @@ video {
     border-radius: 12px;
 }
 
-/* Shaka Player Custom Controls */
-.shaka-controls {
-    position: absolute;
-    bottom: 10px;
-    left: 0;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    border-radius: 10px;
-    padding: 5px;
-}
-
 /* Footer */
 footer {
     margin-top: auto;
