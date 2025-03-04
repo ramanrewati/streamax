@@ -3,48 +3,47 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-  
-  body {
-    background-color: #121212; /* Rich dark background */
+}
+
+body {
+    background-color: #121212; /* Dark theme */
     color: #e0e0e0;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     line-height: 1.6;
-  }
-  
-  header, footer {
+}
+
+header, footer {
     background-color: #1f1f1f;
     text-align: center;
     padding: 20px;
-  }
-  
-  header h1 {
+}
+
+header h1 {
     font-size: 1.8rem;
     font-weight: 300;
-  }
-  
-  main {
+}
+
+main {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
-  }
-  
-  video {
+}
+
+video {
     max-width: 100%;
     height: auto;
     border: 2px solid #333;
     border-radius: 5px;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
     header h1 {
-      font-size: 1.5rem;
+        font-size: 1.5rem;
     }
-  }
-  
+}
