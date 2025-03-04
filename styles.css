@@ -1,0 +1,86 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1e1e1e, #343a40);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    width: 100%;
+    background: #ff9800;
+    text-align: center;
+    padding: 15px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    box-shadow: 0px 4px 8px rgba(255, 152, 0, 0.5);
+}
+
+/* Player Container */
+.player-container {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    margin-top: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+}
+
+video {
+    width: 100%;
+    border-radius: 12px;
+}
+
+/* Shaka Player Custom Controls */
+.shaka-controls {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    padding: 5px;
+}
+
+/* Footer */
+footer {
+    margin-top: auto;
+    text-align: center;
+    padding: 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    background: #ff9800;
+    width: 100%;
+    box-shadow: 0px -4px 8px rgba(255, 152, 0, 0.5);
+}
+
+footer span {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    header {
+        font-size: 1.2rem;
+        padding: 12px;
+    }
+
+    .player-container {
+        width: 95%;
+    }
+
+    footer {
+        font-size: 0.9rem;
+        padding: 12px;
+    }
+}
