@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Seek to live edge
     function seekToLive() {
         if (player.isLive()) {
-            video.currentTime = video.currentTime+28;
+            video.currentTime = video.currentTime+27;
         }
     }
 
@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     video.addEventListener('mousemove', resetControlsTimer);
     video.addEventListener('timeupdate', () => {
-        const liveEdgeThreshold = 10; 
+        const liveEdgeThreshold = 30; 
         const isLiveEdge = video.duration - video.currentTime <= liveEdgeThreshold;
     
         liveBtn.textContent = isLiveEdge ? 'LIVE' : 'NOT LIVE';
