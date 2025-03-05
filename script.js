@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async function () {
-    const mpdUrl = "https://otte.live.cf.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/rkyxparx1t/out/v1/fe9782633a364a6a84c9410f26d9b2c4/cenc.mpd";
+    const mpdUrl = "https://otte.live.fly.ww.aiv-cdn.net/bom-nitro/live/clients/dash/enc/9ekont5e8k/out/v1/e6aaa1b986d0434b95156e22db44eb71/cenc.mpd";
     const video = document.getElementById("videoPlayer");
 
     if (!shaka.Player.isBrowserSupported()) {
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     // DRM Configuration for ClearKey
     const drmConfig = {
         clearKeys: {
-            "494c5ddd4a2b9c38da05e053c0fd6d3f": "ad1ff8c72fc6fefbce716609da9347cf"
+            "8e73c8415d7648e10b06000b1ace5953": "f5d649bf1495cd0864a7422624ac5a86"
         }
     };
 
