@@ -214,11 +214,13 @@ footer {
     
     /* Reduce brand font size */
     .brand {
+        opacity: 0;
         font-size: 1.5rem;
     }
     
     /* Adjust trophy icon for mobile */
     .trophy-icon {
+        opacity: 0;
         position: static;
         transform: scale(1);
         height: 20px;
@@ -233,7 +235,8 @@ footer {
     
     /* Adjust video player height for mobile */
     #videoPlayer {
-        height: 50vh;
+        width: 100%;
+        height: 100%;
     }
     
     /* Scale down play button */
