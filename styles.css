@@ -72,10 +72,10 @@ header {
 
 .trophy-icon {
     position: absolute;
-    right: 1.6rem;
+    right: 1rem;
     height: 30px;
     opacity: 1;
-    transform: scale(3);
+    transform: scale(2.8);
 }
 
 main {
@@ -204,10 +204,10 @@ footer {
     
     /* Adjust flag container for mobile (remove absolute positioning) */
     .flag-container {
-        position: static;
+        position: relative;
         transform: none;
         margin: 1rem 0;
-        flex-direction: column;
+        flex-direction: row;
         gap: 0.5rem;
         padding: 0.5rem 1rem;
     }
