@@ -144,7 +144,7 @@ main {
     color: rgba(255,255,255,0.9);
     padding: 8px 15px;
     border-radius: 20px;
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     cursor: pointer;
     backdrop-filter: blur(5px);
     transition: all 0.3s ease;
