@@ -13,6 +13,9 @@ document.addEventListener("DOMContentLoaded", async function () {
             clearKeys: {
                 "1779c27b9d077a3ba0c9cc1bb9a94b9f": "cc5cf3b7928fb9e0a1ee6a8b566f0a8e"
             }
+        },
+        streaming: {
+            defaultPresentationDelay: 5
         }
     });
 
