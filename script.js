@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     video.addEventListener('mousemove', resetControlsTimer);
     video.addEventListener('timeupdate', () => {
-        const liveEdgeThreshold = 50; 
+        const liveEdgeThreshold = 60; 
         const isLiveEdge = video.duration - video.currentTime <= liveEdgeThreshold;
     
         liveBtn.textContent = isLiveEdge ? 'LIVE' : 'NOT LIVE';
