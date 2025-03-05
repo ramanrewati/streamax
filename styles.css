@@ -1,134 +1,194 @@
-{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+/* styles.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    body {
-        background-color: #020202;
-        opacity: 1;
-        background-image: radial-gradient(#b6583b 1.3px, #020202 1.3px);
-        background-size: 26px 26px;
-        color: #e0e0e0;
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-    }
+body {
+    background-color: #020202;
+    opacity: 1;
+    background-image: radial-gradient(#b6583b 1.3px, #020202 1.3px);
+    background-size: 26px 26px;
+    color: #e0e0e0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
 
-    header,
-    footer {
-        background: rgba(31, 31, 31, 0.9);
-        padding: 1.2rem 2rem;
-        border-radius: 15px;
-        margin: 1rem;
-        backdrop-filter: blur(5px);
-        border: 1px solid rgba(182, 88, 59, 0.3);
-    }
+header, footer {
+    background: rgba(31, 31, 31, 0.9);
+    padding: 1.2rem 2rem;
+    border-radius: 15px;
+    margin: 1rem;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(182, 88, 59, 0.3);
+}
 
-    header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: relative;
-    }
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
 
-    .brand {
-        font-weight: 300;
-        color: #b6583b;
-        letter-spacing: 2px;
-        font-size: 1.8rem;
-    }
+.brand {
+    font-weight: 300;
+    color: #b6583b;
+    letter-spacing: 2px;
+    font-size: 1.8rem;
+}
 
-    .flag-container {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        align-items: center;
-        gap: 1.5rem;
-        background: rgba(31, 31, 31, 0.7);
-        padding: 0.8rem 2rem;
-        border-radius: 30px;
-        border: 1px solid #b6583b33;
-    }
+.flag-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: rgba(31, 31, 31, 0.7);
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    border: 1px solid #b6583b33;
+}
 
-    .flag {
-        font-size: 2rem;
-    }
+.flag {
+    font-size: 2rem;
+}
 
-    .vs {
-        color: #b6583b;
-        font-weight: 300;
-        letter-spacing: 1px;
-    }
+.vs {
+    color: #b6583b;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
 
-    main {
-        flex: 1;
-        padding: 2rem;
-    }
+.match-type {
+    color: #b6583b;
+    margin-left: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
 
-    .video-container {
-        position: relative;
-        width: 80%;
-        max-width: 1200px;
-        margin-top: 2rem;
-        border-radius: 20px;
-        overflow: hidden;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
+.trophy-icon {
+    position: absolute;
+    right: 2rem;
+    height: 30px;
+    opacity: 0.9;
+}
 
-    #videoPlayer {
-        width: 100%;
-        height: 70vh;
-        border-radius: 20px;
-        background: #000;
-    }
+main {
+    flex: 1;
+    padding: 2rem;
+}
 
-    .play-btn {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        background: rgba(182, 88, 59, 0.9);
-        border: 2px solid #b6583b;
-        color: rgba(255, 255, 255, 0.9);
-        font-size: 1.8rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        backdrop-filter: blur(5px);
-        box-shadow: 0 0 20px rgba(182, 88, 59, 0.3);
-    }
+.video-container {
+    position: relative;
+    width: 80%;
+    max-width: 1200px;
+    margin-top: 2rem;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
 
-    .play-btn:hover {
-        transform: translate(-50%, -50%) scale(1.1);
-    }
+#videoPlayer {
+    width: 100%;
+    height: 70vh;
+    border-radius: 20px;
+    background: #000;
+}
 
-    footer {
-        display: flex;
-        justify-content: space-between;
-        font-weight: 300;
-        letter-spacing: 0.5px;
-    }
+.play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: rgba(182, 88, 59, 0.9);
+    border: 2px solid #b6583b;
+    color: rgba(255,255,255,0.9);
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 20px rgba(182, 88, 59, 0.3);
+}
 
-    .tournament {
-        color: #b6583b;
-    }
+.play-btn:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+}
 
-    .credits {
-        opacity: 0.8;
-    }
+.player-controls {
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
 
-    /* Fullscreen styling */
-    #videoPlayer:fullscreen {
-        background: #000;
-        border: none;
-        border-radius: 0;
-    }
+.player-controls.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
 
-    #videoPlayer::-webkit-media-controls {
-        display: none !important;
-    }
+.live-status, .fullscreen-btn {
+    background: rgba(182, 88, 59, 0.9);
+    border: 1px solid #b6583b;
+    color: rgba(255,255,255,0.9);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(182, 88, 59, 0.3);
+}
+
+.live-status:hover, .fullscreen-btn:hover {
+    transform: scale(1.05);
+    background: rgba(182, 88, 59, 1);
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+.tournament {
+    color: #b6583b;
+}
+
+.credits {
+    opacity: 0.8;
+}
+
+/* Fullscreen adjustments */
+#videoPlayer:fullscreen {
+    background: #000;
+    border: none;
+    border-radius: 0;
+}
+
+#videoPlayer:fullscreen .player-controls {
+    bottom: 30px;
+    padding: 0 40px;
+}
+
+#videoPlayer:fullscreen .live-status, 
+#videoPlayer:fullscreen .fullscreen-btn {
+    font-size: 1.1rem;
+    padding: 10px 20px;
+}
+
+#videoPlayer::-webkit-media-controls {
+    display: none !important;
+}
