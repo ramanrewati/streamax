@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Seek to live edge
     function seekToLive() {
         if (player.isLive()) {
-            video.currentTime = video.currentTime+25;
+            video.currentTime = video.currentTime+30;
         }
     }
 
@@ -62,7 +62,10 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     video.addEventListener('mousemove', resetControlsTimer);
     video.addEventListener('timeupdate', () => {
-        liveBtn.textContent = player.isLive() ? 'GO LIVE' : 'NOT LIVE';
+        const liveEdgeThreshold = 5; 
+        const isLiveEdge = video.duration - video.currentTime <= liveEdgeThreshold;
+    
+        liveBtn.textContent = isLiveEdge ? 'LIVE' : 'NOT LIVE';
     });
 
     try {
