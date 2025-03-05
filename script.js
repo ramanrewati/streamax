@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         const liveEdgeThreshold = 30; 
         const isLiveEdge = video.duration - video.currentTime <= liveEdgeThreshold;
     
-        liveBtn.textContent = isLiveEdge ? 'LIVE' : 'NOT LIVE';
+        liveBtn.textContent = isLiveEdge ? 'LIVE' : isLiveEdge;
     });
 
     try {
