@@ -202,29 +202,24 @@ footer {
         margin: 0.5rem;
     }
     
-    /* Adjust flag container for mobile (remove absolute positioning) */
+    /* Remove brand */
+    .brand {
+        display: none;
+    }
+    
+    /* Adjust flag container for mobile (centered in header) */
     .flag-container {
-        position: relative;
-        transform: none;
-        margin: 1rem 0;
-        flex-direction: row;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
         gap: 0.5rem;
         padding: 0.5rem 1rem;
     }
     
-    /* Reduce brand font size */
-    .brand {
-        opacity: 0
-        font-size: 1.5rem;
-    }
-    
-    /* Adjust trophy icon for mobile */
+    /* Remove trophy icon */
     .trophy-icon {
-        opacity: 0;
-        position: static;
-        transform: scale(1);
-        height: 20px;
-        margin-left: auto;
+        display: none;
     }
     
     /* Video container adjustments for mobile */
@@ -250,6 +245,7 @@ footer {
     .player-controls {
         padding: 0 10px;
     }
+    
     .live-status, .fullscreen-btn {
         padding: 5px 10px;
         font-size: 1rem;
