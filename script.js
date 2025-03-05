@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     video.addEventListener('mousemove', resetControlsTimer);
     video.addEventListener('timeupdate', () => {
         const seekRange = player.getSeekRange();
-        const isLiveEdge = video.currentTime >= seekRange.end - 10;
+        const isLiveEdge = video.currentTime >= seekRange.end - 1;
         liveBtn.textContent = isLiveEdge ? 'LIVE' : 'NOT LIVE';
     });
 
