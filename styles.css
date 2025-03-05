@@ -193,3 +193,62 @@ footer {
 #videoPlayer::-webkit-media-controls {
     display: none !important;
 }
+
+/* Mobile Specific Breakpoints */
+@media screen and (max-width: 768px) {
+    /* Adjust header and footer paddings and margins */
+    header, footer {
+        padding: 0.8rem 1rem;
+        margin: 0.5rem;
+    }
+    
+    /* Adjust flag container for mobile (remove absolute positioning) */
+    .flag-container {
+        position: static;
+        transform: none;
+        margin: 1rem 0;
+        flex-direction: row;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+    }
+    
+    /* Reduce brand font size */
+    .brand {
+        font-size: 1.5rem;
+    }
+    
+    /* Adjust trophy icon for mobile */
+    .trophy-icon {
+        position: static;
+        transform: scale(1);
+        height: 20px;
+        margin-left: auto;
+    }
+    
+    /* Video container adjustments for mobile */
+    .video-container {
+        width: 95%;
+        margin: 1rem auto;
+    }
+    
+    /* Adjust video player height for mobile */
+    #videoPlayer {
+        height: 50vh;
+    }
+    
+    /* Scale down play button */
+    .play-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.4rem;
+    }
+    
+    /* Adjust player controls padding and button sizes */
+    .player-controls {
+        padding: 0 10px;
+    }
+    .live-status, .fullscreen-btn {
+        padding: 5px 10px;
+        font-size: 1rem;
+    }
+}
