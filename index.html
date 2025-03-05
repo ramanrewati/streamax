@@ -1,40 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lounge</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="https://cdn.talkjs.com/talk.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bluff Lounge</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-  <header class="glass">
-    <div class="header-left">
-      <h1>Lounge</h1>
-    </div>
-    <div class="header-center">
-      <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg" alt="India Flag" class="flag">
-      <span class="vs-text">V/S</span>
-      <img src="https://upload.wikimedia.org/wikipedia/en/b/b9/Flag_of_Australia.svg" alt="Australia Flag" class="flag">
-    </div>
-  </header>
-  <main>
-    <div class="chat-container glass">
-      <div class="username-container">
-        <input type="text" id="usernameInput" placeholder="Enter username">
-        <button id="setUsernameBtn">Set Username</button>
-      </div>
-      <div id="talkjs-container"></div>
-    </div>
-    <div class="video-container">
-      <video id="videoPlayer" controls autoplay></video>
-    </div>
-  </main>
-  <footer class="glass">
-    <p>Made with ❤️ by RRS</p>
-  </footer>
-  <!-- Include Shaka Player library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.6/shaka-player.compiled.min.js"></script>
-  <script src="script.js"></script>
+    <header>
+        <h1 class="brand">Bluff Lounge</h1>
+        <div class="flag-container"> <span class="flag">🇮🇳</span> <span class="vs">V/S</span> <span
+                class="flag">🇳🇿</span> </div>
+    </header>
+    <main>
+        <div class="video-container">
+            <video id="videoPlayer" autoplay></video>
+            <button class="play-btn">▶</button>
+        </div>
+    </main>
+
+    <footer>
+        <span class="tournament">ICC Champion's Trophy</span>
+        <span class="credits">Made with ❤️ by BluffGang</span>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.6/shaka-player.compiled.min.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>

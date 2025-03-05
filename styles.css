@@ -1,140 +1,134 @@
-/* Reset default styling */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    background: linear-gradient(135deg, #1c1c1c, #121212);
-    background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
-    background-size: 10px 10px;
-    color: #e0e0e0;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    line-height: 1.6;
-  }
-  
-  /* Glassmorphism style */
-  .glass {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-  }
-  
-  /* Header styles */
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    margin: 10px;
-  }
-  
-  header .header-left h1 {
-    font-size: 2rem;
-    font-weight: 300;
-    text-align: left;
-    margin: 0;
-  }
-  
-  header .header-center {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  header .header-center .flag {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 1px solid #e0e0e0;
-  }
-  
-  header .header-center .vs-text {
-    font-size: 1.2rem;
-    font-weight: 300;
-  }
-  
-  /* Main layout: two columns */
-  main {
-    display: flex;
-    flex: 1;
-    padding: 20px;
-    gap: 20px;
-  }
-  
-  /* Chat container styles */
-  .chat-container {
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    padding: 15px;
-    overflow-y: auto;
-  }
-  
-  .username-container {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .username-container input {
-    flex: 1;
-    padding: 8px;
-    border: none;
-    border-radius: 8px;
-    outline: none;
-  }
-  
-  .username-container button {
-    padding: 8px 12px;
-    border: none;
-    border-radius: 8px;
-    background-color: #333;
-    color: #e0e0e0;
-    cursor: pointer;
-  }
-  
-  /* Video container styles */
-  .video-container {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    position: relative;
-  }
-  
-  video {
-    max-width: 100%;
-    height: auto;
-    border: 2px solid #333;
-    border-radius: 15px;
-  }
-  
-  /* Remove border in full screen */
-  video:fullscreen {
-    border: none;
-  }
-  
-  /* Footer styles */
-  footer {
-    text-align: center;
-    padding: 15px 20px;
-    margin: 10px;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    header .header-left h1 {
-      font-size: 1.5rem;
+{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
-    .chat-container {
-      display: none; /* Hide chat on small screens */
+
+    body {
+        background-color: #020202;
+        opacity: 1;
+        background-image: radial-gradient(#b6583b 1.3px, #020202 1.3px);
+        background-size: 26px 26px;
+        color: #e0e0e0;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
     }
-  }
-  
+
+    header,
+    footer {
+        background: rgba(31, 31, 31, 0.9);
+        padding: 1.2rem 2rem;
+        border-radius: 15px;
+        margin: 1rem;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(182, 88, 59, 0.3);
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+    }
+
+    .brand {
+        font-weight: 300;
+        color: #b6583b;
+        letter-spacing: 2px;
+        font-size: 1.8rem;
+    }
+
+    .flag-container {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        background: rgba(31, 31, 31, 0.7);
+        padding: 0.8rem 2rem;
+        border-radius: 30px;
+        border: 1px solid #b6583b33;
+    }
+
+    .flag {
+        font-size: 2rem;
+    }
+
+    .vs {
+        color: #b6583b;
+        font-weight: 300;
+        letter-spacing: 1px;
+    }
+
+    main {
+        flex: 1;
+        padding: 2rem;
+    }
+
+    .video-container {
+        position: relative;
+        width: 80%;
+        max-width: 1200px;
+        margin-top: 2rem;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    #videoPlayer {
+        width: 100%;
+        height: 70vh;
+        border-radius: 20px;
+        background: #000;
+    }
+
+    .play-btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: rgba(182, 88, 59, 0.9);
+        border: 2px solid #b6583b;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1.8rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(5px);
+        box-shadow: 0 0 20px rgba(182, 88, 59, 0.3);
+    }
+
+    .play-btn:hover {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    footer {
+        display: flex;
+        justify-content: space-between;
+        font-weight: 300;
+        letter-spacing: 0.5px;
+    }
+
+    .tournament {
+        color: #b6583b;
+    }
+
+    .credits {
+        opacity: 0.8;
+    }
+
+    /* Fullscreen styling */
+    #videoPlayer:fullscreen {
+        background: #000;
+        border: none;
+        border-radius: 0;
+    }
+
+    #videoPlayer::-webkit-media-controls {
+        display: none !important;
+    }
