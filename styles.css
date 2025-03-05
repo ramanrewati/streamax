@@ -65,16 +65,16 @@ header {
 
 .match-type {
     color: #b6583b;
-    margin-left: 1.5rem;
-    font-weight: 300;
+    margin-left: 1rem;
+    font-weight: 500;
     letter-spacing: 1px;
 }
 
 .trophy-icon {
     position: absolute;
-    right: 2rem;
+    right: 1.6rem;
     height: 30px;
-    opacity: 0.9;
+    opacity: 1;
     transform: scale(3);
 }
 
@@ -207,14 +207,14 @@ footer {
         position: static;
         transform: none;
         margin: 1rem 0;
-        flex-direction: row;
+        flex-direction: column;
         gap: 0.5rem;
         padding: 0.5rem 1rem;
     }
     
     /* Reduce brand font size */
     .brand {
-        opacity: 0;
+        opacity: 0
         font-size: 1.5rem;
     }
     
