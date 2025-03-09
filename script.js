@@ -2,14 +2,6 @@
 const video = document.getElementById('video'); // Ensure you have a <video> element in your HTML
 const player = new shaka.Player(video);
 
-// Configure Shaka Player (optional)
-player.configure({
-  streaming: {
-    bufferingGoal: 60, // Buffer up to 60 seconds of content ahead
-    rebufferingGoal: 10 // Ensure at least 10 seconds of content is buffered before resuming playback
-  }
-});
-
 // Play/pause handlers
 function togglePlayback() {
   if (video.paused) {
