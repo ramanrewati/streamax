@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     const fsBtn = document.querySelector('.fullscreen-btn');
     const controls = document.querySelector('.player-controls');
     let controlsTimeout;
+
     // Initialize player
     const player = new shaka.Player(video);
     player.configure({
@@ -44,7 +45,14 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Seek to live edge
     function seekToLive() {
         if (player.isLive()) {
-            video.currentTime = video.currentTime+26;
+            const seekRange = player.getSeekRange();
+            const liveEdge = seekRange.end;
+            const bufferAhead = player.getBufferedInfo().total.buffered.end;
+            const targetTime = Math.min(liveEdge, bufferAhead);
+
+            if (video.currentTime < targetTime) {
+                video.currentTime = targetTime;
+            }
         }
     }
 
@@ -57,6 +65,20 @@ document.addEventListener("DOMContentLoaded", async function () {
         }, 3000);
     }
 
+    // Update live/not live status
+    function updateLiveStatus() {
+        if (player.isLive()) {
+            const seekRange = player.getSeekRange();
+            const liveEdge = seekRange.end;
+            const bufferAhead = player.getBufferedInfo().total.buffered.end;
+            const isLiveEdge = video.currentTime >= liveEdge - 1;
+
+            liveBtn.textContent = isLiveEdge ? 'LIVE' : 'NOT LIVE';
+        } else {
+            liveBtn.textContent = 'LIVE';
+        }
+    }
+
     // Event listeners
     playBtn.addEventListener('click', togglePlayback);
     video.addEventListener('click', togglePlayback);
@@ -64,11 +86,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     liveBtn.addEventListener('click', seekToLive);
 
     video.addEventListener('mousemove', resetControlsTimer);
-    video.addEventListener('timeupdate', () => {
-        const seekRange = player.getSeekRange();
-        const isLiveEdge = video.currentTime >= seekRange.end - 1;
-        liveBtn.textContent = isLiveEdge ? 'LIVE' : 'NOT LIVE';
-    });
+    video.addEventListener('timeupdate', updateLiveStatus);
 
     try {
         await player.load(mpdUrl);
