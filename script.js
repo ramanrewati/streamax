@@ -1,76 +1,114 @@
-// Get DOM elements
-const video    = document.getElementById('videoPlayer');
-const playBtn  = document.querySelector('.play-btn');
-const fsBtn    = document.querySelector('.fullscreen-btn');
-const liveBtn  = document.querySelector('.live-status');
-const controls = document.querySelector('.player-controls');
-let controlsTimeout;
+document.addEventListener("DOMContentLoaded", async function () {
+    const mpdUrl = "https://otte.live.fly.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/1jii7mxinw/out/v1/fe9782633a364a6a84c9410f26d9b2c4/cenc.mpd";
+    const video = document.getElementById("videoPlayer");
+    const playBtn = document.querySelector('.play-btn');
+    const liveBtn = document.querySelector('.live-status');
+    const fsBtn = document.querySelector('.fullscreen-btn');
+    const controls = document.querySelector('.player-controls');
+    let controlsTimeout;
 
-// m3u8 URL (replace with your actual stream URL)
-const m3u8Url = 'https://jcevents.akamaized.net/bpk-tv/JC_Sports18_1HD/JCHLS/hdntl=exp=1741585633~acl=%2f*~id=97ff5c734c6f4a3ea96b01cfd44846cc~data=hdntl~hmac=db0dbae6b8d53b386b4bc9848af7139235c4f2c36e1bc9ee44971a36249f2c20/JC_Sports18_1HD-audio_108038_eng=108000-video=3728000.m3u8';
-
-// Initialize Shaka Player without DRM settings
-const player = new shaka.Player(video);
-
-// Listen for player errors.
-player.addEventListener('error', function(event) {
-  console.error('Error code', event.detail.code, 'object', event.detail);
-});
-
-// Load the m3u8 URL
-player.load(m3u8Url).then(function() {
-  // On successful load, disable native controls and start playback
-  video.controls = false;
-  video.play();
-  resetControlsTimer();
-}).catch(function(error) {
-  console.error("Error loading video:", error);
-});
-
-// Toggle play/pause
-function togglePlayback() {
-  if (video.paused) {
-    video.play();
-    playBtn.style.display = 'none';
-  } else {
-    video.pause();
-    playBtn.style.display = 'block';
-  }
-}
-
-// Toggle fullscreen mode
-function toggleFullscreen() {
-  if (!document.fullscreenElement) {
-    video.requestFullscreen().catch(err => {
-      console.error('Error attempting to enable fullscreen:', err);
+    // Initialize player
+    const player = new shaka.Player(video);
+    player.configure({
+        drm: {
+            clearKeys: {
+                "553a8e7efc48840b17d03797c023d9b6": "05fa313fa73df33f19e0f2d3d047bbaf"
+            }
+        },
+        streaming: {
+            defaultPresentationDelay: 2, // Align with the suggested presentation delay in the MPD file
+            rebufferingGoal: 10, // Reduce rebuffering goal to minimize initial delay
+            bufferingGoal: 10, // Reduce buffering goal to minimize initial delay
+            bufferBehind: 10, // Reduce buffer behind to minimize initial delay
+            ignoreTextStreamFailures: true
+        },
+        abr: {
+            enabled: true, // Ensure ABR is enabled for auto quality
+            defaultBandwidthEstimate: 500000, // Adjust based on your network conditions
+            restrictions: {
+                minWidth: 640,
+                minHeight: 360,
+                maxWidth: 1920,
+                maxHeight: 1080
+            }
+        }
     });
-  } else {
-    document.exitFullscreen();
-  }
-}
 
-// Seek to the live edge (for live streams)
-function seekToLive() {
-  // For a live stream, set currentTime near the end (i.e. live edge)
-  video.currentTime = video.duration;
-}
+    // Play/pause handlers
+    function togglePlayback() {
+        if (video.paused) {
+            video.play();
+            playBtn.style.display = 'none';
+        } else {
+            video.pause();
+            playBtn.style.display = 'block';
+        }
+    }
 
-// Auto-hide controls after 3 seconds of inactivity
-function resetControlsTimer() {
-  controls.classList.remove('hidden');
-  clearTimeout(controlsTimeout);
-  controlsTimeout = setTimeout(() => {
-    controls.classList.add('hidden');
-  }, 3000);
-}
+    // Fullscreen toggle
+    function toggleFullscreen() {
+        if (!document.fullscreenElement) {
+            video.requestFullscreen().catch(err => {
+                console.log('Error attempting to enable fullscreen:', err);
+            });
+        } else {
+            document.exitFullscreen();
+        }
+    }
 
-// Event listeners for controls
-playBtn.addEventListener('click', togglePlayback);
-video.addEventListener('click', togglePlayback);
-fsBtn.addEventListener('click', toggleFullscreen);
-liveBtn.addEventListener('click', seekToLive);
-video.addEventListener('mousemove', resetControlsTimer);
-video.addEventListener('timeupdate', () => {
-  // Update the live button text based on whether the stream is live
-  liveBtn.textContent = (video.duration === Infinity) ? 'LIVE' : 'NOT LIVE';
+    // Seek to live edge
+    function seekToLive() {
+        if (player.isLive()) {
+            const seekRange = player.getSeekRange();
+            const liveEdge = seekRange.end;
+            const bufferAhead = player.getBufferedInfo().total.buffered.end;
+            const targetTime = Math.min(liveEdge, bufferAhead);
+
+            if (video.currentTime < targetTime) {
+                video.currentTime = targetTime;
+            }
+        }
+    }
+
+    // Auto-hide controls
+    function resetControlsTimer() {
+        controls.classList.remove('hidden');
+        clearTimeout(controlsTimeout);
+        controlsTimeout = setTimeout(() => {
+            controls.classList.add('hidden');
+        }, 3000);
+    }
+
+    // Update live/not live status
+    function updateLiveStatus() {
+        if (player.isLive()) {
+            const seekRange = player.getSeekRange();
+            const liveEdge = seekRange.end;
+            const isLiveEdge = video.currentTime >= liveEdge - 1;
+
+            liveBtn.textContent = isLiveEdge ? 'LIVE' : 'NOT LIVE';
+            liveBtn.style.color = isLiveEdge ? 'red' : 'white';
+        } else {
+            liveBtn.textContent = 'LIVE';
+            liveBtn.style.color = 'red';
+        }
+    }
+
+    // Event listeners
+    playBtn.addEventListener('click', togglePlayback);
+    video.addEventListener('click', togglePlayback);
+    fsBtn.addEventListener('click', toggleFullscreen);
+    liveBtn.addEventListener('click', seekToLive);
+
+    video.addEventListener('mousemove', resetControlsTimer);
+    video.addEventListener('timeupdate', updateLiveStatus);
+
+    try {
+        await player.load(mpdUrl);
+        video.controls = false;
+        resetControlsTimer();
+        seekToLive(); // Seek to live edge immediately after loading
+    } catch (error) {
+        console.error("Error loading video:", error);
+    }
 });
