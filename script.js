@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     const fsBtn = document.querySelector('.fullscreen-btn');
     const controls = document.querySelector('.player-controls');
     let controlsTimeout;
-
     // Initialize player
     const player = new shaka.Player(video);
     player.configure({
@@ -14,6 +13,9 @@ document.addEventListener("DOMContentLoaded", async function () {
             clearKeys: {
                 "553a8e7efc48840b17d03797c023d9b6": "05fa313fa73df33f19e0f2d3d047bbaf"
             }
+        },
+        streaming: {
+            defaultPresentationDelay: 5
         }
     });
 
@@ -42,7 +44,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Seek to live edge
     function seekToLive() {
         if (player.isLive()) {
-            video.currentTime = video.currentTime + 25;
+            video.currentTime = video.currentTime+26;
         }
     }
 
@@ -55,22 +57,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         }, 3000);
     }
 
-    // Update live/not live status
-    function updateLiveStatus() {
-        if (player.isLive()) {
-            const seekRange = player.seekRange();
-            const liveEdge = seekRange.end;
-            const bufferedEnd = video.buffered.length ? video.buffered.end(video.buffered.length - 1) : video.currentTime;
-            const isLiveEdge = (liveEdge - bufferedEnd) <= 25;
-
-            liveBtn.textContent = isLiveEdge ? 'LIVE' : 'NOT LIVE';
-            liveBtn.style.color = isLiveEdge ? 'red' : 'white';
-        } else {
-            liveBtn.textContent = 'NOT LIVE';
-            liveBtn.style.color = 'white';
-        }    
-    }
-
     // Event listeners
     playBtn.addEventListener('click', togglePlayback);
     video.addEventListener('click', togglePlayback);
@@ -78,13 +64,16 @@ document.addEventListener("DOMContentLoaded", async function () {
     liveBtn.addEventListener('click', seekToLive);
 
     video.addEventListener('mousemove', resetControlsTimer);
-    video.addEventListener('timeupdate', updateLiveStatus);
+    video.addEventListener('timeupdate', () => {
+        const seekRange = player.getSeekRange();
+        const isLiveEdge = video.currentTime >= seekRange.end - 1;
+        liveBtn.textContent = isLiveEdge ? 'LIVE' : 'NOT LIVE';
+    });
 
     try {
         await player.load(mpdUrl);
         video.controls = false;
         resetControlsTimer();
-        seekToLive(); // Seek to live edge immediately after loading
     } catch (error) {
         console.error("Error loading video:", error);
     }
