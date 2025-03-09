@@ -16,7 +16,21 @@ document.addEventListener("DOMContentLoaded", async function () {
             }
         },
         streaming: {
-            defaultPresentationDelay: 5
+            defaultPresentationDelay: 2, // Align with the suggested presentation delay in the MPD file
+            rebufferingGoal: 10, // Reduce rebuffering goal to minimize initial delay
+            bufferingGoal: 10, // Reduce buffering goal to minimize initial delay
+            bufferBehind: 10, // Reduce buffer behind to minimize initial delay
+            ignoreTextStreamFailures: true
+        },
+        abr: {
+            enabled: true, // Ensure ABR is enabled for auto quality
+            defaultBandwidthEstimate: 500000, // Adjust based on your network conditions
+            restrictions: {
+                minWidth: 640,
+                minHeight: 360,
+                maxWidth: 1920,
+                maxHeight: 1080
+            }
         }
     });
 
@@ -70,12 +84,13 @@ document.addEventListener("DOMContentLoaded", async function () {
         if (player.isLive()) {
             const seekRange = player.getSeekRange();
             const liveEdge = seekRange.end;
-            const bufferAhead = player.getBufferedInfo().total.buffered.end;
             const isLiveEdge = video.currentTime >= liveEdge - 1;
 
             liveBtn.textContent = isLiveEdge ? 'LIVE' : 'NOT LIVE';
+            liveBtn.style.color = isLiveEdge ? 'red' : 'white';
         } else {
             liveBtn.textContent = 'LIVE';
+            liveBtn.style.color = 'red';
         }
     }
 
@@ -92,6 +107,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         await player.load(mpdUrl);
         video.controls = false;
         resetControlsTimer();
+        seekToLive(); // Seek to live edge immediately after loading
     } catch (error) {
         console.error("Error loading video:", error);
     }
