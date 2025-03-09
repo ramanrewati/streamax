@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async function () {
-    const mpdUrl = "https://abmyxykaaaaaaaamkyvb65fuqebyg.7a77200bf98444ac997a89ed83775793.emt.cf.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/f60kqesunw/out/v1/a435ed7a00f947deb4369b46d8f2fb70/cenc.mpd";
+    const mpdUrl = "https://otte.live.fly.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/1jii7mxinw/out/v1/fe9782633a364a6a84c9410f26d9b2c4/cenc.mpd";
     const video = document.getElementById("videoPlayer");
     const playBtn = document.querySelector('.play-btn');
     const liveBtn = document.querySelector('.live-status');
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     player.configure({
         drm: {
             clearKeys: {
-                "1779c27b9d077a3ba0c9cc1bb9a94b9f": "cc5cf3b7928fb9e0a1ee6a8b566f0a8e"
+                "553a8e7efc48840b17d03797c023d9b6": "05fa313fa73df33f19e0f2d3d047bbaf"
             }
         },
         streaming: {
