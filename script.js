@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async function () {
-    const mpdUrl = "https://otte.live.fly.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/1jii7mxinw/out/v1/fe9782633a364a6a84c9410f26d9b2c4/cenc.mpd";
+    const m3u8Url = "https://jcevents.akamaized.net/bpk-tv/JC_Sports18_1HD/JCHLS/hdntl=exp=1741585633~acl=%2f*~id=97ff5c734c6f4a3ea96b01cfd44846cc~data=hdntl~hmac=db0dbae6b8d53b386b4bc9848af7139235c4f2c36e1bc9ee44971a36249f2c20/JC_Sports18_1HD-audio_108038_eng=108000-video=3728000.m3u8";
     const video = document.getElementById("videoPlayer");
     const playBtn = document.querySelector('.play-btn');
     const liveBtn = document.querySelector('.live-status');
@@ -7,32 +7,20 @@ document.addEventListener("DOMContentLoaded", async function () {
     const controls = document.querySelector('.player-controls');
     let controlsTimeout;
 
-    // Initialize player
-    const player = new shaka.Player(video);
-    player.configure({
-        drm: {
-            clearKeys: {
-                "553a8e7efc48840b17d03797c023d9b6": "05fa313fa73df33f19e0f2d3d047bbaf"
-            }
-        },
-        streaming: {
-            defaultPresentationDelay: 2, // Align with the suggested presentation delay in the MPD file
-            rebufferingGoal: 10, // Reduce rebuffering goal to minimize initial delay
-            bufferingGoal: 10, // Reduce buffering goal to minimize initial delay
-            bufferBehind: 10, // Reduce buffer behind to minimize initial delay
-            ignoreTextStreamFailures: true
-        },
-        abr: {
-            enabled: true, // Ensure ABR is enabled for auto quality
-            defaultBandwidthEstimate: 500000, // Adjust based on your network conditions
-            restrictions: {
-                minWidth: 640,
-                minHeight: 360,
-                maxWidth: 1920,
-                maxHeight: 1080
-            }
-        }
-    });
+    // Initialize HLS player
+    if (Hls.isSupported()) {
+        const hls = new Hls();
+        hls.loadSource(m3u8Url);
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MANIFEST_PARSED, function () {
+            video.play();
+        });
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = m3u8Url;
+        video.addEventListener('loadedmetadata', function () {
+            video.play();
+        });
+    }
 
     // Play/pause handlers
     function togglePlayback() {
@@ -56,20 +44,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
     }
 
-    // Seek to live edge
-    function seekToLive() {
-        if (player.isLive()) {
-            const seekRange = player.getSeekRange();
-            const liveEdge = seekRange.end;
-            const bufferAhead = player.getBufferedInfo().total.buffered.end;
-            const targetTime = Math.min(liveEdge, bufferAhead);
-
-            if (video.currentTime < targetTime) {
-                video.currentTime = targetTime;
-            }
-        }
-    }
-
     // Auto-hide controls
     function resetControlsTimer() {
         controls.classList.remove('hidden');
@@ -81,17 +55,14 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     // Update live/not live status
     function updateLiveStatus() {
-        if (player.isLive()) {
-            const seekRange = player.getSeekRange();
-            const liveEdge = seekRange.end;
-            const isLiveEdge = video.currentTime >= liveEdge - 1;
+        const isLiveEdge = video.currentTime >= (video.duration - 2);
+        liveBtn.textContent = isLiveEdge ? 'LIVE' : 'NOT LIVE';
+        liveBtn.style.color = isLiveEdge ? 'red' : 'white';
+    }
 
-            liveBtn.textContent = isLiveEdge ? 'LIVE' : 'NOT LIVE';
-            liveBtn.style.color = isLiveEdge ? 'red' : 'white';
-        } else {
-            liveBtn.textContent = 'LIVE';
-            liveBtn.style.color = 'red';
-        }
+    // Seek to live edge
+    function seekToLive() {
+        video.currentTime = video.duration;
     }
 
     // Event listeners
@@ -99,16 +70,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     video.addEventListener('click', togglePlayback);
     fsBtn.addEventListener('click', toggleFullscreen);
     liveBtn.addEventListener('click', seekToLive);
-
     video.addEventListener('mousemove', resetControlsTimer);
     video.addEventListener('timeupdate', updateLiveStatus);
-
-    try {
-        await player.load(mpdUrl);
-        video.controls = false;
-        resetControlsTimer();
-        seekToLive(); // Seek to live edge immediately after loading
-    } catch (error) {
-        console.error("Error loading video:", error);
-    }
+    
+    resetControlsTimer();
 });
